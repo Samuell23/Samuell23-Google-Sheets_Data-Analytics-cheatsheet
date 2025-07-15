@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Data Analytics Cheatsheet</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;line-height:1.6;color:#333;background:#f4f4f4}
+        .container{max-width:1200px;margin:0 auto;padding:20px}.header{background:#2c3e50;color:white;padding:20px;text-align:center;margin-bottom:20px}
+        .nav{background:#34495e;padding:10px;margin-bottom:20px;position:sticky;top:0;z-index:100}.nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center}
+        .nav li{margin:0 5px}.nav a{color:white;text-decoration:none;padding:5px 10px;border-radius:3px;font-size:12px}.nav a:hover{background:#2c3e50}
+        .module{background:white;margin-bottom:20px;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,0.1)}.module-header{background:#3498db;color:white;padding:15px;cursor:pointer;border-radius:5px 5px 0 0}
+        .module-content{padding:20px;display:none}.module-content.active{display:block}.code{background:#f8f9fa;padding:10px;border-left:4px solid #3498db;margin:10px 0;font-family:monospace;font-size:12px}
+        .formula{background:#e8f5e8;padding:5px;border-radius:3px;font-family:monospace;font-size:11px}.section{margin-bottom:15px}
+        .section h4{color:#2c3e50;margin-bottom:10px;border-bottom:2px solid #ecf0f1;padding-bottom:5px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+        .card{background:#f8f9fa;padding:15px;border-radius:5px;border-left:4px solid #3498db}.list{padding-left:20px}.list li{margin-bottom:5px}
+        .footer{background:#2c3e50;color:white;text-align:center;padding:20px;margin-top:40px;font-size:12px}@media(max-width:768px){.nav ul{flex-direction:column}.nav li{margin:5px 0}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Google Sheets Data Analytics Cheatsheet</h1>
+            <p>Complete Reference Guide for Beginners</p>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#module1">1. Preparing Data</a></li>
+                <li><a href="#module2">2. Data Sources</a></li>
+                <li><a href="#module3">3. Using Data</a></li>
+                <li><a href="#module4">4. Aggregations</a></li>
+                <li><a href="#module5">5. Visualization</a></li>
+                <li><a href="#module7">7. Formatting</a></li>
+                <li><a href="#module8">8. Cleaning</a></li>
+                <li><a href="#module9">9. Sampling</a></li>
+                <li><a href="#module10">10. Functions</a></li>
+                <li><a href="#module12">12. Patterns</a></li>
+                <li><a href="#module13">13. Accuracy</a></li>
+                <li><a href="#module14">14. Testing</a></li>
+            </ul>
+        </nav>
+
+        <div class="module" id="module1">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>1. Module Overview: Preparing Data</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Data Preparation Steps</h4>
+                        <ul class="list">
+                            <li>Remove duplicates and fix typos</li>
+                            <li>Standardize formats consistently</li>
+                            <li>Identify and handle missing values</li>
+                            <li>Use consistent headers</li>
+                            <li>One data type per column</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Key Cleaning Functions</h4>
+                        <div class="code">
+                            <div class="formula">=TRIM(A1)</div> Remove extra spaces<br>
+                            <div class="formula">=UPPER(A1)</div> Convert to uppercase<br>
+                            <div class="formula">=LOWER(A1)</div> Convert to lowercase<br>
+                            <div class="formula">=PROPER(A1)</div> Capitalize first letters<br>
+                            <div class="formula">=SUBSTITUTE(A1,"old","new")</div> Replace text<br>
+                            <div class="formula">=CLEAN(A1)</div> Remove non-printable chars
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module2">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>2. Data Sources And Access</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Import Methods</h4>
+                        <ul class="list">
+                            <li>Manual entry</li>
+                            <li>File → Import (.csv, .xlsx, .txt)</li>
+                            <li>Google Forms integration</li>
+                            <li>Web scraping functions</li>
+                            <li>API connections</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Import Functions</h4>
+                        <div class="code">
+                            <div class="formula">=IMPORTDATA("URL")</div> Import CSV from web<br>
+                            <div class="formula">=IMPORTHTML("URL","table",1)</div> Import HTML table<br>
+                            <div class="formula">=IMPORTRANGE("url","Sheet1!A1:C10")</div> Import from another sheet<br>
+                            <div class="formula">=IMPORTXML("URL","xpath")</div> Import XML data
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module3">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>3. An Introduction To Using Data</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Cell References</h4>
+                        <div class="code">
+                            <div class="formula">A1</div> Single cell<br>
+                            <div class="formula">A1:A10</div> Range (A1 to A10)<br>
+                            <div class="formula">A:A</div> Entire column A<br>
+                            <div class="formula">1:1</div> Entire row 1<br>
+                            <div class="formula">$A$1</div> Absolute reference<br>
+                            <div class="formula">$A1</div> Mixed reference
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Operators</h4>
+                        <div class="code">
+                            + Addition &nbsp;&nbsp; - Subtraction<br>
+                            * Multiplication &nbsp;&nbsp; / Division<br>
+                            ^ Exponentiation<br>
+                            = Equal &nbsp;&nbsp; <> Not equal<br>
+                            > Greater &nbsp;&nbsp; < Less than<br>
+                            >= Greater/equal &nbsp;&nbsp; <= Less/equal
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module4">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>4. Data Aggregations And Descriptive Statistics</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Basic Statistics</h4>
+                        <div class="code">
+                            <div class="formula">=COUNT(A1:A10)</div> Count numbers<br>
+                            <div class="formula">=COUNTA(A1:A10)</div> Count non-empty<br>
+                            <div class="formula">=SUM(A1:A10)</div> Sum values<br>
+                            <div class="formula">=AVERAGE(A1:A10)</div> Mean<br>
+                            <div class="formula">=MEDIAN(A1:A10)</div> Middle value<br>
+                            <div class="formula">=MODE(A1:A10)</div> Most frequent<br>
+                            <div class="formula">=MAX(A1:A10)</div> Maximum<br>
+                            <div class="formula">=MIN(A1:A10)</div> Minimum
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Advanced Statistics</h4>
+                        <div class="code">
+                            <div class="formula">=STDEV(A1:A10)</div> Standard deviation<br>
+                            <div class="formula">=VAR(A1:A10)</div> Variance<br>
+                            <div class="formula">=PERCENTILE(A1:A10,0.5)</div> 50th percentile<br>
+                            <div class="formula">=QUARTILE(A1:A10,1)</div> First quartile<br>
+                            <div class="formula">=CORREL(A1:A10,B1:B10)</div> Correlation
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Conditional Functions</h4>
+                        <div class="code">
+                            <div class="formula">=COUNTIF(A1:A10,">5")</div> Count with condition<br>
+                            <div class="formula">=SUMIF(A1:A10,">5",B1:B10)</div> Sum with condition<br>
+                            <div class="formula">=AVERAGEIF(A1:A10,">5")</div> Average with condition<br>
+                            <div class="formula">=COUNTIFS(A1:A10,">5",B1:B10,"Yes")</div> Multiple criteria
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module5">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>5. An Introduction To Data Visualisation</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Chart Types</h4>
+                        <ul class="list">
+                            <li><strong>Column/Bar:</strong> Compare categories</li>
+                            <li><strong>Line:</strong> Show trends over time</li>
+                            <li><strong>Pie:</strong> Show parts of whole</li>
+                            <li><strong>Scatter:</strong> Show relationships</li>
+                            <li><strong>Area:</strong> Show cumulative totals</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Chart Creation Steps</h4>
+                        <ol class="list">
+                            <li>Select data range</li>
+                            <li>Insert → Chart</li>
+                            <li>Choose appropriate chart type</li>
+                            <li>Customize title and labels</li>
+                            <li>Format colors and style</li>
+                        </ol>
+                    </div>
+                    <div class="card">
+                        <h4>Best Practices</h4>
+                        <ul class="list">
+                            <li>Use clear, descriptive titles</li>
+                            <li>Label axes appropriately</li>
+                            <li>Choose accessible colors</li>
+                            <li>Start y-axis at zero for bars</li>
+                            <li>Keep design simple</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module7">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>7. Data Formatting</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Number Formatting</h4>
+                        <ul class="list">
+                            <li>Format → Number → Currency</li>
+                            <li>Format → Number → Percentage</li>
+                            <li>Format → Number → Date</li>
+                            <li>Format → Number → Custom</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Conditional Formatting</h4>
+                        <div class="code">
+                            Format → Conditional formatting<br>
+                            • Color scales<br>
+                            • Data bars<br>
+                            • Icon sets<br>
+                            • Custom formulas
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Text Formatting</h4>
+                        <div class="code">
+                            <div class="formula">=TEXT(A1,"0.00")</div> Format as number<br>
+                            <div class="formula">=TEXT(A1,"mm/dd/yyyy")</div> Format as date<br>
+                            <div class="formula">=TEXT(A1,"0%")</div> Format as percentage
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module8">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>8. Data Cleaning</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Remove Duplicates</h4>
+                        <div class="code">
+                            Data → Data cleanup → Remove duplicates<br>
+                            Or use: <div class="formula">=UNIQUE(A1:A10)</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Split Text</h4>
+                        <div class="code">
+                            Data → Split text to columns<br>
+                            Or use: <div class="formula">=SPLIT(A1,",")</div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Find & Replace</h4>
+                        <div class="code">
+                            Ctrl+H or Edit → Find and replace<br>
+                            Use regular expressions for advanced patterns
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Data Validation</h4>
+                        <div class="code">
+                            Data → Data validation<br>
+                            • List from range<br>
+                            • Number range<br>
+                            • Date range<br>
+                            • Custom formula
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module9">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>9. Samples And Distributions</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Random Sampling</h4>
+                        <div class="code">
+                            <div class="formula">=RAND()</div> Random number 0-1<br>
+                            <div class="formula">=RANDBETWEEN(1,100)</div> Random integer<br>
+                            <div class="formula">=SAMPLE(A1:A100,10)</div> Random sample
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Distribution Functions</h4>
+                        <div class="code">
+                            <div class="formula">=NORMDIST(x,mean,std,TRUE)</div> Normal distribution<br>
+                            <div class="formula">=NORMINV(prob,mean,std)</div> Normal inverse<br>
+                            <div class="formula">=CONFIDENCE(alpha,std,size)</div> Confidence interval
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Frequency Analysis</h4>
+                        <div class="code">
+                            <div class="formula">=FREQUENCY(data,bins)</div> Frequency distribution<br>
+                            <div class="formula">=HISTOGRAM(data,bins)</div> Create histogram
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module10">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>10. Spreadsheet Functions</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Lookup Functions</h4>
+                        <div class="code">
+                            <div class="formula">=VLOOKUP(A2,D:F,2,FALSE)</div> Vertical lookup<br>
+                            <div class="formula">=HLOOKUP(A2,D1:F2,2,FALSE)</div> Horizontal lookup<br>
+                            <div class="formula">=INDEX(B1:B10,MATCH(A2,A1:A10,0))</div> Index-Match<br>
+                            <div class="formula">=XLOOKUP(A2,D:D,E:E)</div> Modern lookup
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Text Functions</h4>
+                        <div class="code">
+                            <div class="formula">=LEN(A1)</div> Text length<br>
+                            <div class="formula">=LEFT(A1,3)</div> First 3 characters<br>
+                            <div class="formula">=RIGHT(A1,3)</div> Last 3 characters<br>
+                            <div class="formula">=MID(A1,2,3)</div> Middle characters<br>
+                            <div class="formula">=CONCATENATE(A1,B1)</div> Join text
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Date Functions</h4>
+                        <div class="code">
+                            <div class="formula">=TODAY()</div> Current date<br>
+                            <div class="formula">=NOW()</div> Current date/time<br>
+                            <div class="formula">=YEAR(A1)</div> Extract year<br>
+                            <div class="formula">=MONTH(A1)</div> Extract month<br>
+                            <div class="formula">=DATEDIF(A1,B1,"D")</div> Date difference
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Logical Functions</h4>
+                        <div class="code">
+                            <div class="formula">=IF(A1>5,"High","Low")</div> If-then-else<br>
+                            <div class="formula">=AND(A1>5,B1<10)</div> Both conditions<br>
+                            <div class="formula">=OR(A1>5,B1<10)</div> Either condition<br>
+                            <div class="formula">=IFS(A1>90,"A",A1>80,"B")</div> Multiple conditions
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module12">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>12. Identifying Patterns</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Trend Analysis</h4>
+                        <div class="code">
+                            <div class="formula">=TREND(known_y,known_x,new_x)</div> Linear trend<br>
+                            <div class="formula">=GROWTH(known_y,known_x,new_x)</div> Exponential growth<br>
+                            <div class="formula">=FORECAST(x,known_y,known_x)</div> Forecast values
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Pattern Recognition</h4>
+                        <ul class="list">
+                            <li>Use conditional formatting for patterns</li>
+                            <li>Create sparklines for mini-charts</li>
+                            <li>Use pivot tables for grouping</li>
+                            <li>Apply filters to isolate patterns</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Regression Analysis</h4>
+                        <div class="code">
+                            <div class="formula">=LINEST(known_y,known_x)</div> Linear regression<br>
+                            <div class="formula">=LOGEST(known_y,known_x)</div> Exponential regression<br>
+                            <div class="formula">=RSQ(known_y,known_x)</div> R-squared value
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module13">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>13. Accuracy</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Error Checking</h4>
+                        <div class="code">
+                            <div class="formula">=ISERROR(A1)</div> Check for errors<br>
+                            <div class="formula">=IFERROR(A1,"Error")</div> Handle errors<br>
+                            <div class="formula">=ISNA(A1)</div> Check for #N/A<br>
+                            <div class="formula">=IFNA(A1,"Not Found")</div> Handle #N/A
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Data Validation</h4>
+                        <ul class="list">
+                            <li>Set input restrictions</li>
+                            <li>Create dropdown lists</li>
+                            <li>Use custom formulas</li>
+                            <li>Add error messages</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Quality Checks</h4>
+                        <ul class="list">
+                            <li>Check for duplicates</li>
+                            <li>Verify data types</li>
+                            <li>Cross-reference totals</li>
+                            <li>Validate against source</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="module14">
+            <div class="module-header" onclick="toggleModule(this)">
+                <h2>14. Drawing And Testing Assumptions</h2>
+            </div>
+            <div class="module-content">
+                <div class="grid">
+                    <div class="card">
+                        <h4>Hypothesis Testing</h4>
+                        <div class="code">
+                            <div class="formula">=TTEST(array1,array2,tails,type)</div> T-test<br>
+                            <div class="formula">=CHITEST(actual,expected)</div> Chi-square test<br>
+                            <div class="formula">=ZTEST(array,mu,sigma)</div> Z-test
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Confidence Intervals</h4>
+                        <div class="code">
+                            <div class="formula">=CONFIDENCE.T(alpha,std,size)</div> T-distribution<br>
+                            <div class="formula">=CONFIDENCE.NORM(alpha,std,size)</div> Normal distribution
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Assumption Testing</h4>
+                        <ul class="list">
+                            <li>Test for normality</li>
+                            <li>Check for linearity</li>
+                            <li>Verify independence</li>
+                            <li>Test homoscedasticity</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>Scenario Analysis</h4>
+                        <ul class="list">
+                            <li>What-if scenarios</li>
+                            <li>Sensitivity analysis</li>
+                            <li>Goal seek</li>
+                            <li>Data tables</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h4>Keyboard Shortcuts</h4>
+            <div class="code">
+                Ctrl+C Copy • Ctrl+V Paste • Ctrl+Z Undo • Ctrl+A Select All • F2 Edit Cell • Ctrl+D Fill Down • Ctrl+; Insert Date
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created with content from ALX Data Analytics Program and assistance from Claude AI</p>
+        <p>© 2025 - Complete Google Sheets Data Analytics Reference Guide</p>
+    </div>
+
+    <script>
+        function toggleModule(header) {
+            const content = header.nextElementSibling;
+            const allContents = document.querySelectorAll('.module-content');
+            
+            allContents.forEach(c => {
+                if (c !== content) c.classList.remove('active');
+            });
+            
+            content.classList.toggle('active');
+        }
+
+        // Auto-expand first module
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.module-content').classList.add('active');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({behavior: 'smooth'});
+                    target.querySelector('.module-content').classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
